@@ -5,7 +5,9 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/white">
+   style="@style/SettingsBackround">
+
+
 
 
     <LinearLayout
@@ -15,27 +17,28 @@
         android:layout_marginTop="@dimen/Main_text_marginTop"
         >
         <Button
-            style="?android:attr/borderlessButtonStyle"
+            style ="@style/IconTintColor"
+            android:background="?android:attr/selectableItemBackground"
             android:id= "@+id/backSettings"
             android:layout_marginStart="@dimen/Corner_Radius"
             android:gravity="center_horizontal"
-            android:layout_width="@dimen/layout_icon_size"
-            android:layout_height="@dimen/layout_icon_size"
-            android:backgroundTint="@color/white"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+
             app:icon="@drawable/vectormainsettings"
-            app:iconGravity="textTop"
+            app:iconGravity="textStart"
             app:iconPadding="@dimen/Icon_Padding"
-            app:iconTint="@color/Text_Black" />
+           />
         <TextView
+            style="@style/TextViewStyle"
             android:drawablePadding="@dimen/drawable_padding"
-            android:textStyle="bold"
             android:layout_marginStart="@dimen/text_margin_start"
             android:layout_marginTop="@dimen/Main_text_marginTop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Settings"
             android:layout_gravity="start"
-            android:textColor="@color/Text_Black"
+
             android:textSize="@dimen/Text_size" />
     </LinearLayout>
 
@@ -45,58 +48,70 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/Main_layout_marginTop"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/Corner_Radius"
+
+        >
 
         <Switch
+            android:layout_marginEnd="10dp"
+            android:paddingEnd="-3dp"
+
             android:id="@+id/switch6"
+            style="@style/TextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/Settings_Padding"
-            android:layout_marginHorizontal="@dimen/Corner_Radius"
             android:layout_weight="1"
+
+
             android:text="@string/User_Black_Theme"
-            android:textColor="@color/Text_Black"
             android:textSize="@dimen/Text_size_settings"
             tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         <TextView
+            android:layout_marginEnd="14dp"
+            android:paddingEnd="2dp"
+            style="@style/TextViewStyleAndIcon"
             android:drawableEnd="@drawable/vectorsetting1"
-            android:paddingEnd="@dimen/Corner_Radius"
             android:layout_width="match_parent"
             android:layout_height="@dimen/Settings_Padding"
-            android:layout_marginHorizontal="@dimen/Corner_Radius"
             android:layout_weight="1"
-            android:backgroundTint="@color/white"
+
             android:text="@string/User_Share"
             android:gravity="center_vertical"
-            android:textColor="@color/Text_Black"
+
             android:textSize="@dimen/Text_size_settings"
             />
 
         <TextView
+            android:layout_marginEnd="14dp"
+            style="@style/TextViewStyleAndIcon"
             android:drawableEnd="@drawable/groupsettin2"
-            android:paddingEnd="@dimen/Corner_Radius"
+
             android:layout_width="match_parent"
             android:layout_height="@dimen/Settings_Padding"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:layout_marginHorizontal="@dimen/Corner_Radius"
             android:text=   "@string/User_Support"
-            android:textColor="@color/Text_Black"
+
             android:textSize="@dimen/Text_size_settings"
             />
         <TextView
+            android:layout_marginEnd="14dp"
+            android:paddingEnd="6dp"
+            style="@style/TextViewStyleAndIcon"
             android:drawableEnd="@drawable/vectorsetting3"
-            android:paddingEnd="@dimen/Corner_Radius"
+
             android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="@dimen/Settings_Padding"
-            android:layout_marginHorizontal="@dimen/Corner_Radius"
             android:layout_weight="1"
-            android:backgroundTint="@color/white"
+
             android:text="@string/User_Enter"
-            android:textColor="@color/Text_Black"
+
             android:textSize="@dimen/Text_size_settings"/>
         <FrameLayout
+            android:layout_marginEnd="14dp"
             android:layout_width="match_parent"
             android:layout_weight="50"
             android:layout_height="@dimen/empty_layout_height"/>
