@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <dimen name="Text_size">22sp</dimen>
+    <dimen name="Corner_Radius">16dp</dimen>
+    <dimen name="Icon_Padding">8dp</dimen>
+    <dimen name="Buttons_height">220dp</dimen>
+    <dimen name="Text_size_settings">16sp</dimen>
+    <dimen name="Top_Padding">56dp</dimen>
+    <dimen name="Settings_Padding">61dp</dimen>
+    <dimen name="Main_layout_marginTop">33dp</dimen>
+    <dimen name="Main_layout_marginBottom">28dp</dimen>
+    <dimen name="Main_text_marginTop">14dp</dimen>
+    <dimen name="layout_icon_size">30dp</dimen>
+    <dimen name="drawable_padding">15dp</dimen>
+    <dimen name="text_margin_start">24sp</dimen>
+    <dimen name="empty_layout_height">476dp</dimen>
+</resources>

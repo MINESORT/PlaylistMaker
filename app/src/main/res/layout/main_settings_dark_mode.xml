@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/Text_Black">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Top_Padding"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/Main_text_marginTop"
+        >
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:id= "@+id/backSettings"
+            android:layout_marginStart="@dimen/Corner_Radius"
+            android:gravity="center_horizontal"
+            android:layout_width="@dimen/layout_icon_size"
+            android:layout_height="@dimen/layout_icon_size"
+            android:backgroundTint="@color/white"
+            app:icon="@drawable/vectormainsettings"
+            app:iconGravity="textTop"
+            app:iconPadding="@dimen/Icon_Padding"
+            app:iconTint="@color/white" />
+        <TextView
+            android:drawablePadding="@dimen/drawable_padding"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/text_margin_start"
+            android:layout_marginTop="@dimen/Main_text_marginTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Settings"
+            android:layout_gravity="start"
+            android:textColor="@color/white"
+            android:textSize="@dimen/Text_size" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/Main_layout_marginTop"
+        android:orientation="vertical">
+
+        <Switch
+            android:checked="true"
+            android:id="@+id/switch6"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/Settings_Padding"
+            android:layout_marginHorizontal="@dimen/Corner_Radius"
+            android:layout_weight="1"
+            android:text="@string/User_Black_Theme"
+            android:textColor="@color/white"
+            android:textSize="@dimen/Text_size_settings"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        <TextView
+            android:drawableEnd="@drawable/vectorsetting1"
+            android:paddingEnd="@dimen/Corner_Radius"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/Settings_Padding"
+            android:layout_marginHorizontal="@dimen/Corner_Radius"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:drawableTint="@color/white"
+            android:text="@string/User_Share"
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+            android:textSize="@dimen/Text_size_settings"
+            />
+
+        <TextView
+            android:drawableEnd="@drawable/groupsettin2"
+            android:paddingEnd="@dimen/Corner_Radius"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/Settings_Padding"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:drawableTint="@color/white"
+            android:layout_marginHorizontal="@dimen/Corner_Radius"
+            android:text=   "@string/User_Support"
+            android:textColor="@color/white"
+            android:textSize="@dimen/Text_size_settings"
+            />
+        <TextView
+            android:drawableEnd="@drawable/vectorsetting3"
+            android:paddingEnd="@dimen/Corner_Radius"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/Settings_Padding"
+            android:layout_marginHorizontal="@dimen/Corner_Radius"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:drawableTint="@color/white"
+            android:text="@string/User_Enter"
+            android:textColor="@color/white"
+            android:textSize="@dimen/Text_size_settings"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_weight="50"
+            android:layout_height="@dimen/empty_layout_height"/>
+    </LinearLayout>
+
+</LinearLayout>
