@@ -13,5 +13,5 @@
     <color name="Nes_Black">#1A1B22</color>
     <color name="Main_White">#FFFFFF</color>
     <color name="Edit_Black">#000000</color>
-
+    <color name="grayView">#AEAFB4</color>
 </resources>

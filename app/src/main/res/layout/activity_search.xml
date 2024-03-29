@@ -28,8 +28,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/Main_layout_marginTop"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top_6"
         android:orientation="vertical"
         android:layout_marginStart="@dimen/Corner_Radius"
         android:layout_marginEnd="@dimen/Corner_Radius"
@@ -37,7 +37,7 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
         <EditText
             android:drawableStart="@drawable/vector"
             style="@style/EditTextStyle"
@@ -47,8 +47,8 @@
         <ImageView
             android:id="@+id/xIcon"
             android:layout_gravity="end"
-            android:paddingEnd="14dp"
-            android:paddingTop="10dp"
+            android:paddingEnd="@dimen/padding_image_search_end"
+            android:paddingTop="@dimen/padding_image_search_top"
             app:tint="@color/GreySearch"
             android:visibility="gone"
             android:layout_width="wrap_content"
@@ -60,4 +60,9 @@
 
     </LinearLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:paddingTop="@dimen/image_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

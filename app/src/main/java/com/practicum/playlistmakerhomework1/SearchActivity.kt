@@ -11,6 +11,9 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.playlistmaker.AdapterTrack
 
 class SearchActivity : AppCompatActivity() {
     private var text: String = ""
@@ -23,13 +26,20 @@ class SearchActivity : AppCompatActivity() {
         searchEdit = findViewById(R.id.searchWatcher)
 
         val xButton = findViewById<ImageView>(R.id.xIcon)
-
+        val trackList: ArrayList<Track> = ArrayList()
         val backButton = findViewById<Button>(R.id.backSettings)
 
         backButton.setOnClickListener {
             val displayIntent = Intent(this, MainActivity::class.java)
             startActivity(displayIntent)
         }
+
+
+        trackList.add(Track("Smells Like Teen Spirit", "Nirvana", "5:01", getString(R.string.nirvana)))
+        trackList.add(Track("Billie Jean", "Michael Jackson", "4:35", getString(R.string.michael_jackson)))
+        trackList.add(Track("Stayin' Alive", "Bee Gees", "4:10", getString(R.string.bee_gees)))
+        trackList.add(Track("Whole Lotta Love", "Led Zeppelin", "5:33", getString(R.string.led_zeppelin)))
+        trackList.add(Track("Sweet Child O'Mine", "Guns N' Roses", "5:03", getString(R.string.guns_n_roses)))
 
         xButton.setOnClickListener {
             searchEdit.setText("")
@@ -52,6 +62,11 @@ class SearchActivity : AppCompatActivity() {
             }
         }
         searchEdit.addTextChangedListener(temporaryTextWatcher)
+
+        val tracksRecycler = findViewById<RecyclerView>(R.id.recycler_view)
+
+        tracksRecycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+             tracksRecycler.adapter = AdapterTrack(trackList)
     }
 
     private fun clearButtonVisibility(s: CharSequence?): Int {

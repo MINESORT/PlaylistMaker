@@ -9,4 +9,5 @@
     <color name="EditSearch">#FFFFFF</color>
     <color name="GreySearch">#000000</color>
     <color name="Text_BlackAndWhite">#1A1B22</color>
+    <color name="grayView">#FFFFFF</color>
 </resources>
