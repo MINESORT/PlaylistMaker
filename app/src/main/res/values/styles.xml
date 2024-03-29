@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MainActivityButtons" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:lineHeight">@dimen/general_layout_height</item>
+        <item name="android:fontWeight">@integer/layout_weight_xy</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/Buttons_height</item>
+        <item name="backgroundTint">@color/Main_White</item>
+        <item name="android:textColor">@color/Nes_Black</item>
+        <item name="android:textSize">@dimen/Text_size</item>
+        <item name="android:layout_weight">@integer/layout_weight_base</item>
+        <item name="textAllCaps">false</item>
+        <item name="cornerRadius">@dimen/Corner_Radius</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">@dimen/Icon_Padding</item>
+        <item name="iconTint">@color/Nes_Black</item>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+    </style>
+
+    <style name="SettingsBase" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:fontFamily">@font/ys_display_regular</item>
+        <item name="android:textColor">@color/SettingText_Black</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/Settings_Padding</item>
+        <item name="android:layout_weight">@integer/layout_weight_base</item>
+        <item name="android:textSize">@dimen/Text_size_settings</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:gravity">center_vertical</item>
+
+    </style>
+
+    <style name="SettingsButton" parent="SettingsBase">
+        <item name="drawableTint">@color/GreyIcon</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:layout_marginEnd">@dimen/Main_text_marginTop</item>
+    </style>
+
+    <style name="backButton">
+        <item name="iconTint">@color/SettingText_Black</item>
+        <item name="android:layout_marginTop">@dimen/back_button_margin_top</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:layout_marginStart">@dimen/Corner_Radius</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_width">@dimen/general_icon_par</item>
+        <item name="android:layout_height">@dimen/general_icon_par</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">@dimen/Icon_Padding</item>
+    </style>
+
+    <style name="headlineMain">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:lineHeight">@dimen/general_layout_height</item>
+        <item name="android:fontWeight">@integer/layout_weight_xy</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:textSize">@dimen/Text_size</item>
+
+    </style>
+
+    <style name="headlineOther" parent="headlineMain">
+        <item name="android:textColor">@color/SettingText_Black</item>
+        <item name="android:drawablePadding">@dimen/drawable_padding</item>
+        <item name="android:layout_marginStart">@dimen/text_margin_start</item>
+    </style>
+
+    <style name="EditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:backgroundTint">@color/EditSearch</item>
+        <item name="android:textColorHint">@color/GreySearch</item>
+        <item name="android:textColor">@color/Edit_Black</item>
+        <item name="android:drawableTint">@color/GreySearch</item>
+        <item name="android:paddingStart">@dimen/drawable_padding</item>
+        <item name="android:drawablePadding">@dimen/Icon_Padding</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:inputType">text</item>
+        <item name="android:hint">@string/Search</item>
+        <item name="android:background">@drawable/et_style</item>
+        <item name="android:lines">1</item>
+        <item name="android:maxLength">15</item>
+    </style>
+</resources>

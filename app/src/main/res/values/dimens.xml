@@ -14,9 +14,10 @@
     <dimen name="drawable_padding">15dp</dimen>
     <dimen name="text_margin_start">24sp</dimen>
     <dimen name="empty_layout_height">476dp</dimen>
-    <dimen name="general_layout_height">25.78dp</dimen>
+    <dimen name="general_layout_height">26dp</dimen>
     <item type="integer" name="layout_weight_xy">500</item>
     <item type="integer" name="layout_weight_base">1</item>
-    <dimen name="general_margin_end">25.78dp</dimen>
+    <dimen name="general_margin_end">26dp</dimen>
     <dimen name="general_icon_par">26dp</dimen>
+    <dimen name="back_button_margin_top">3dp</dimen>
 </resources>

@@ -1,11 +1,71 @@
 package com.practicum.playlistmakerhomework1
-
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
 
 class SearchActivity : AppCompatActivity() {
+    private var text: String = ""
+    private lateinit var searchEdit: EditText
+
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
+        searchEdit = findViewById(R.id.searchWatcher)
+
+        val xButton = findViewById<ImageView>(R.id.xIcon)
+
+        val backButton = findViewById<Button>(R.id.backSettings)
+
+        backButton.setOnClickListener {
+            val displayIntent = Intent(this, MainActivity::class.java)
+            startActivity(displayIntent)
+        }
+
+        xButton.setOnClickListener {
+            searchEdit.setText("")
+            val inputMethodManager =
+                getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            inputMethodManager?.hideSoftInputFromWindow(searchEdit.windowToken, 0)
+        }
+
+        val temporaryTextWatcher = object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                xButton.visibility = clearButtonVisibility(p0)
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                text = p0.toString()
+            }
+        }
+        searchEdit.addTextChangedListener(temporaryTextWatcher)
     }
-}
+
+    private fun clearButtonVisibility(s: CharSequence?): Int {
+        return if (s.isNullOrEmpty()) { View.GONE } else { View.VISIBLE }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("text", text)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        val restoredText = savedInstanceState.getString("text")
+        searchEdit.setText(restoredText)
+    }
+    }

@@ -8,4 +8,9 @@
     <string name="User_Support">Написать в поддержку</string>
     <string name="User_Share">Поделиться приложением</string>
     <string name="User_Black_Theme">Темная тема</string>
+    <string name="emailMessage">mine-dist@yandex.ru</string>
+    <string name="subjectMessage">Сообщение разработчикам приложения Playlist Maker</string>
+    <string name="bodyMessage">Спасибо разработчикам за крутое приложение!</string>
+    <string name="messageLink">https://practicum.yandex.ru/courses/android-developer/</string>
+    <string name="offerLink">https://yandex.ru/legal/practicum_offer/</string>
 </resources>
