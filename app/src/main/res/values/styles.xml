@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="MainActivityButtons" parent="Widget.MaterialComponents.Button.UnelevatedButton">
-        <item name="android:lineHeight">@dimen/general_layout_height</item>
         <item name="android:fontWeight">@integer/layout_weight_xy</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/Buttons_height</item>
@@ -51,7 +50,6 @@
     <style name="headlineMain">
         <item name="android:textAllCaps">false</item>
         <item name="android:fontFamily">@font/ys_display_medium</item>
-        <item name="android:lineHeight">@dimen/general_layout_height</item>
         <item name="android:fontWeight">@integer/layout_weight_xy</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
