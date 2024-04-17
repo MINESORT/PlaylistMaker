@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
     <dimen name="Text_size">22sp</dimen>
     <dimen name="Corner_Radius">16dp</dimen>
     <dimen name="Icon_Padding">8dp</dimen>
@@ -8,11 +7,31 @@
     <dimen name="Text_size_settings">16sp</dimen>
     <dimen name="Top_Padding">56dp</dimen>
     <dimen name="Settings_Padding">61dp</dimen>
-    <dimen name="Main_layout_marginTop">33dp</dimen>
+    <dimen name="Main_layout_marginTop">24dp</dimen>
     <dimen name="Main_layout_marginBottom">28dp</dimen>
     <dimen name="Main_text_marginTop">14dp</dimen>
     <dimen name="layout_icon_size">30dp</dimen>
     <dimen name="drawable_padding">15dp</dimen>
     <dimen name="text_margin_start">24sp</dimen>
     <dimen name="empty_layout_height">476dp</dimen>
+    <dimen name="general_layout_height">26dp</dimen>
+    <item type="integer" name="layout_weight_xy">500</item>
+    <item type="integer" name="layout_weight_base">1</item>
+    <dimen name="general_margin_end">26dp</dimen>
+    <dimen name="general_icon_par">26dp</dimen>
+    <dimen name="back_button_margin_top">3dp</dimen>
+    <dimen name="corner_2">2dp</dimen>
+    <dimen name="image_margin">8dp</dimen>
+    <dimen name="image_h_w">45dp</dimen>
+    <dimen name="big_text_list">16sp</dimen>
+    <dimen name="small_text_list">13sp</dimen>
+    <dimen name="margin_40">40dp</dimen>
+    <dimen name="track_height">61dp</dimen>
+    <dimen name="margin_start_track">13dp</dimen>
+    <dimen name="margin_top_14">14dp</dimen>
+    <dimen name="margin_image_track">20dp</dimen>
+    <dimen name="margin_top_6">-6dp</dimen>
+    <dimen name="padding_image_search_end">14dp</dimen>
+    <dimen name="padding_image_search_top">10dp</dimen>
+
 </resources>

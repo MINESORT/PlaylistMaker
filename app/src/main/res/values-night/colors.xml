@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FFFFFF</color>
+    <color name="white">#000000</color>
+    <color name="Main_Blue">#1A1B22</color>
+    <color name="Nes_Black">#1A1B22</color>
+    <color name="SettingText_Black">#FFFFFF</color>
+    <color name="GreyIcon">#FFFFFF</color>
+    <color name="EditSearch">#FFFFFF</color>
+    <color name="GreySearch">#000000</color>
+    <color name="Text_BlackAndWhite">#1A1B22</color>
+    <color name="grayView">#FFFFFF</color>
+</resources>

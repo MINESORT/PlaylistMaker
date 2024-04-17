@@ -1,10 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchActivity"
-    android:background = "@color/white">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/Text_BlackAndWhite">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Top_Padding"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/Main_text_marginTop"
+        >
+        <Button
+            style="@style/backButton"
+            android:id= "@+id/backSettings"
+            app:icon="@drawable/vectormainsettings"
+
+            />
+        <TextView
+            style="@style/headlineOther"
+            android:text="@string/Search"
+          />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top_6"
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/Corner_Radius"
+        android:layout_marginEnd="@dimen/Corner_Radius"
+        >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <EditText
+            android:drawableStart="@drawable/vector"
+            style="@style/EditTextStyle"
+            android:id="@+id/searchWatcher"
+            tools:ignore="RtlSymmetry" />
+
+        <ImageView
+            android:id="@+id/xIcon"
+            android:layout_gravity="end"
+            android:paddingEnd="@dimen/padding_image_search_end"
+            android:paddingTop="@dimen/padding_image_search_top"
+            app:tint="@color/GreySearch"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/x_icon"
+            tools:ignore="RtlSymmetry" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:paddingTop="@dimen/image_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
