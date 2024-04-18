@@ -8,6 +8,7 @@ android {
         viewBinding = true
     }
 
+
     namespace = "com.practicum.playlistmakerhomework1"
     compileSdk = 34
 
