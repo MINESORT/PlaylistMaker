@@ -4,7 +4,9 @@ plugins {
 }
 
 android {
-
+    buildFeatures {
+        viewBinding = true
+    }
 
 
     namespace = "com.practicum.playlistmakerhomework1"

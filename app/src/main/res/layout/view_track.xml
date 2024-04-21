@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/view_track"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/track_height">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="@dimen/margin_40">
+
+        <ImageView
+            style="@style/TrackHolderTextSquare"
+            android:id="@+id/image_place_holder"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_14"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TrackHolderTextBig"
+                android:id="@+id/track_name"
+                tools:text="Test-_:43sassasasasasswe92345348054308430953e324"
+                />
+
+            <LinearLayout
+                android:showDividers="middle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:divider="@drawable/ellipse"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    style="@style/TrackHolderTextSmall"
+                    android:id="@+id/musician"
+                    tools:text="Deferwfwfe;32e325435.43543t4rogifeg5kt435edfwedwddf" />
+
+                <TextView
+                    style="@style/TrackHolderTextTime"
+                    android:id="@+id/time_place_holder"
+                    tools:text="6:30"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        style="@style/TrackHolderTextImage"
+        android:id="@+id/image_forward_arrow"
+        />
+
+</FrameLayout>

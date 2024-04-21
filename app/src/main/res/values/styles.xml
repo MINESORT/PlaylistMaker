@@ -81,4 +81,50 @@
     </style>
 
 
+    <style name="TrackHolderTextBig">
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/big_text_list</item>
+    </style>
+
+    <style name="TrackHolderTextSmall">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textColor">@color/grayView</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">@dimen/small_text_list</item>
+
+
+    </style>
+
+    <style name="TrackHolderTextTime">
+        <item name="android:textColor">@color/grayView</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/small_text_list</item>
+    </style>
+
+    <style name="TrackHolderTextImage">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center|end</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:src">@drawable/vectorsetting3</item>
+        <item name="android:layout_marginEnd">@dimen/margin_image_track</item>
+        <item name="tint">@color/grayView</item>
+
+    </style>
+
+    <style name="TrackHolderTextSquare">
+        <item name="android:layout_marginStart">@dimen/margin_start_track</item>
+        <item name="android:layout_marginTop">@dimen/image_margin</item>
+        <item name="android:layout_marginEnd">@dimen/image_margin</item>
+        <item name="android:layout_width">@dimen/image_h_w</item>
+        <item name="android:layout_height">@dimen/image_h_w</item>
+    </style>
+
 </resources>
