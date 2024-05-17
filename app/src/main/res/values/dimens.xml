@@ -33,6 +33,9 @@
     <dimen name="margin_top_6">-6dp</dimen>
     <dimen name="padding_image_search_end">14dp</dimen>
     <dimen name="padding_image_search_top">10dp</dimen>
-
-
+    <dimen name="rad_54dp">54dp</dimen>
+    <dimen name="pad_top_16dp">16dp</dimen>
+    <dimen name="pad_top_110">110dp</dimen>
+    <dimen name="text_size_19sp">19sp</dimen>
+    <dimen name="size_14sp">14sp</dimen>
 </resources>

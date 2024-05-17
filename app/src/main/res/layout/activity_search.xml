@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+
     android:background="@color/Text_BlackAndWhite">
 
     <LinearLayout
@@ -41,7 +42,9 @@
             android:drawableStart="@drawable/vector"
             style="@style/EditTextStyle"
             android:id="@+id/searchWatcher"
-            tools:ignore="RtlSymmetry" />
+            tools:ignore="RtlSymmetry"
+            android:imeOptions="actionDone"
+            android:singleLine="true"/>
 
         <ImageView
             android:id="@+id/xIcon"
@@ -55,8 +58,8 @@
             android:src="@drawable/x_icon"
             tools:ignore="RtlSymmetry" />
         </FrameLayout>
-    </LinearLayout>
 
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -64,4 +67,44 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+
+
+<LinearLayout
+    style="@style/errorLayout"
+    android:id="@+id/error_not_found"
+>
+<ImageView
+    style="@style/notFindPlaceholder"
+     />
+<TextView
+
+    style="@style/errorTextView"
+    android:text="@string/noToFind"
+   />
 </LinearLayout>
+
+<LinearLayout
+    style="@style/errorLayout"
+    android:id="@+id/error_no_internet"
+    >
+<ImageView
+    style="@style/noInternetPlaceholder"
+    />
+<TextView
+    style="@style/errorTextView"
+    android:text="@string/connection_lost"
+    android:layout_gravity="center"
+    />
+
+<TextView
+    style="@style/errorTextView"
+    android:text="@string/no_internet"
+    tools:ignore="HardcodedText" />
+<Button
+    style="@style/updateButton"
+    android:id="@+id/update_button"
+    android:text="@string/update"
+    />
+</LinearLayout>
+
+    </LinearLayout>
