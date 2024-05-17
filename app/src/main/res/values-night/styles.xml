@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="notFindPlaceholder">
+        <item name="android:src">@drawable/not_find_black</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/pad_top_110</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+    <style name="noInternetPlaceholder">
+        <item name="android:src">@drawable/no_internet_black</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:paddingTop">@dimen/pad_top_110</item>
+    </style>
+</resources>

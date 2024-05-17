@@ -7,7 +7,7 @@ import com.practicum.playlistmakerhomework1.R
 import com.practicum.playlistmakerhomework1.Track
 import com.practicum.playlistmakerhomework1.ViewHolderTrack
 
-class AdapterTrack(private val tracks: List<Track>) : RecyclerView.Adapter<ViewHolderTrack>() {
+class AdapterTrack(private val tracks: MutableList<Track>) : RecyclerView.Adapter<ViewHolderTrack>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderTrack {
         return ViewHolderTrack(LayoutInflater.from(parent.context).inflate(R.layout.view_track, parent, false))
     }
