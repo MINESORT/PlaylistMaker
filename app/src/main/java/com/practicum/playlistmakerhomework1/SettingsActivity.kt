@@ -13,6 +13,10 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.switchmaterial.SwitchMaterial
+
+const val THEME_KEY = "key_for_theme"
+const val THEME = "day_night_theme"
 
 class SettingsActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId", "IntentReset")
@@ -22,7 +26,16 @@ class SettingsActivity : AppCompatActivity() {
         val email = getString(R.string.emailMessage)
         val subject = getString(R.string.subjectMessage)
         val body = getString(R.string.bodyMessage)
+        val switchTheme = findViewById<SwitchMaterial>(R.id.switchTheme)
+        val sharedSwitch = getSharedPreferences(THEME, MODE_PRIVATE)
+        val check = sharedSwitch.getBoolean(THEME_KEY, false)
+        switchTheme.isChecked = check
+        (applicationContext as App).switchTheme(check)
 
+        switchTheme.setOnCheckedChangeListener { _, isChecked ->
+            (applicationContext as App).switchTheme(isChecked)
+            sharedSwitch.edit().putBoolean(THEME_KEY, isChecked).apply()
+        }
 
         val backButton = findViewById<Button>(R.id.backSettings)
 

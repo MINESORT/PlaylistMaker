@@ -65,8 +65,43 @@
         android:id="@+id/recycler_view"
         android:paddingTop="@dimen/image_margin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:visibility="visible"/>
 
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:id="@+id/history_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                style="@style/searchTextHistory"
+                android:text="@string/search"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/history_rec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_8" />
+
+            <Button
+                style="@style/clearHistory"
+                android:id="@+id/delete_history"
+                android:text="@string/history_clear"
+                 />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
 <LinearLayout
