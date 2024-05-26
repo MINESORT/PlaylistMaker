@@ -16,8 +16,8 @@ class SearchHistory(private val sharedPreferences: SharedPreferences){
 
 
     fun getTracks(){
-        val s = sharedPreferences.getString(HISTORY_KEY, null)
-        historyListTracks = listFromJson(s)
+        val getSample  = sharedPreferences.getString(HISTORY_KEY, null)
+        historyListTracks = listFromJson(getSample)
     }
 
     fun putTracks(){
