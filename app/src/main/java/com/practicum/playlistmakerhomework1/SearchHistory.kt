@@ -12,11 +12,12 @@ private const val MAX_SIZE = 10
 
 class SearchHistory(private val sharedPreferences: SharedPreferences){
 
-  val historyListTracks = mutableListOf<Track>()
+  var historyListTracks = mutableListOf<Track>()
 
-    fun getTracks(): List<Track> {
+
+    fun getTracks(){
         val s = sharedPreferences.getString(HISTORY_KEY, null)
-        return listFromJson(s)
+        historyListTracks = listFromJson(s)
     }
 
     fun putTracks(){
