@@ -14,5 +14,8 @@
     <color name="Main_White">#FFFFFF</color>
     <color name="Edit_Black">#000000</color>
     <color name="grayView">#AEAFB4</color>
-
+    <color name="switch_color_1">#AEAFB4</color>
+    <color name="switch_color_2">#E6E8EB</color>
+    <color name="tp_black">#1A1B22</color>
+    <color name="tp_white">#FFFFFF</color>
 </resources>

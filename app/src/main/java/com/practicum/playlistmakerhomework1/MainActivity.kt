@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val switch6 = findViewById<Switch>(R.id.switch6)
+
         val settingsButton = findViewById<Button>(R.id.buttonMain3)
         val libraryButton = findViewById<Button>(R.id.buttonMain2)
         val searchButton = findViewById<Button>(R.id.buttonMain1)

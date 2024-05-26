@@ -13,7 +13,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.playlistmaker.AdapterTrack
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,13 +22,20 @@ import android.widget.LinearLayout
 import android.widget.Button
 import android.view.inputmethod.EditorInfo
 
+
+private const val HISTORY_KEY = "history"
 class SearchActivity : AppCompatActivity() {
     private var text: String = ""
     private lateinit var searchEdit: EditText
     private val baseUrl = "https://itunes.apple.com"
     private val retrofit = Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create()).build()
     private val iTunes = retrofit.create(ITunesAPI::class.java)
+    private lateinit var scanHistory: SearchHistory
 
+    override fun onStop() {
+        super.onStop()
+        scanHistory.putTracks()
+    }
     @SuppressLint("MissingInflatedId", "NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,19 +46,42 @@ class SearchActivity : AppCompatActivity() {
         val trackRecycler = findViewById<RecyclerView>(R.id.recycler_view)
         val errorNotFound = findViewById<LinearLayout>(R.id.error_not_found)
         val errorNoInternet = findViewById<LinearLayout>(R.id.error_no_internet)
+        val history = findViewById<LinearLayout>(R.id.history_layout)
         val tracks = mutableListOf<Track>()
-        val adapter = AdapterTrack(tracks)
         val xButton = findViewById<ImageView>(R.id.xIcon)
         val backButton = findViewById<Button>(R.id.backSettings)
+        val historySharedPrefs = getSharedPreferences(HISTORY_KEY, MODE_PRIVATE)
+        scanHistory = SearchHistory(historySharedPrefs)
+        scanHistory.getTracks()
+
+        val adapter = AdapterTrack(tracks) {
+            track -> scanHistory.addTrack(track)
+        }
+
+        val historyRecyclerView = findViewById<RecyclerView>(R.id.history_rec)
+        history.visibility = if (scanHistory.historyListTracks.isEmpty()) View.GONE else View.VISIBLE
+
+        val historyAd = AdapterTrack(scanHistory.historyListTracks) {
+            track -> scanHistory.addTrack(track)
+        }
+
+        historyRecyclerView.adapter = historyAd
+        historyRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         trackRecycler.adapter = adapter
         trackRecycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        val deleteHistory = findViewById<Button>(R.id.delete_history)
+        deleteHistory.setOnClickListener{
+            historySharedPrefs.edit().clear().apply()
+            scanHistory.historyListTracks.clear()
+            history.visibility = View.GONE
+            historyAd.notifyDataSetChanged()
+        }
 
         backButton.setOnClickListener {
             val displayIntent = Intent(this, MainActivity::class.java)
             startActivity(displayIntent)
         }
-
-
 
         xButton.setOnClickListener {
             searchEdit.setText("")
@@ -60,6 +89,7 @@ class SearchActivity : AppCompatActivity() {
             adapter.notifyDataSetChanged()
             errorNotFound.visibility = View.GONE
             errorNoInternet.visibility = View.GONE
+            historyAd.notifyDataSetChanged()
             val inputMethodManager =
                 getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
             inputMethodManager?.hideSoftInputFromWindow(searchEdit.windowToken, 0)
@@ -71,6 +101,11 @@ class SearchActivity : AppCompatActivity() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 xButton.visibility = clearButtonVisibility(p0)
+                if (searchEdit.hasFocus() && p0?.isEmpty() == false) history.visibility = View.GONE
+                else {
+                    history.visibility = View.VISIBLE
+                    historyAd.notifyDataSetChanged()
+                }
             }
 
             override fun afterTextChanged(p0: Editable?) {

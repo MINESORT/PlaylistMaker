@@ -34,13 +34,15 @@
         android:layout_marginStart="@dimen/Corner_Radius"
         >
 
-        <Switch
+        <com.google.android.material.switchmaterial.SwitchMaterial
             style="@style/SettingsBase"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="14dp"
             android:paddingEnd="-3dp"
-            android:id="@+id/switch6"
+            android:id="@+id/switchTheme"
             android:text="@string/User_Black_Theme"
-            tools:ignore="RtlSymmetry,UseSwitchCompatOrMaterialXml" />
+            tools:ignore="RtlSymmetry,UseSwitchCompatOrMaterialXml"
+            app:thumbTint="@color/switch_color_1"
+            app:trackTint="@color/switch_color_2"/>
 
         <TextView
             style="@style/SettingsButton"

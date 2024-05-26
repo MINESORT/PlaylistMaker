@@ -1,4 +1,4 @@
-package com.example.playlistmaker
+package com.practicum.playlistmakerhomework1
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,12 +7,19 @@ import com.practicum.playlistmakerhomework1.R
 import com.practicum.playlistmakerhomework1.Track
 import com.practicum.playlistmakerhomework1.ViewHolderTrack
 
-class AdapterTrack(private val tracks: MutableList<Track>) : RecyclerView.Adapter<ViewHolderTrack>() {
+class AdapterTrack(private val tracks: MutableList<Track>, private val callback: (Track) -> Unit) :
+    RecyclerView.Adapter<ViewHolderTrack>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderTrack {
-        return ViewHolderTrack(LayoutInflater.from(parent.context).inflate(R.layout.view_track, parent, false))
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.view_track, parent, false)
+        return ViewHolderTrack(view)
     }
+
     override fun onBindViewHolder(holder: ViewHolderTrack, position: Int) {
         holder.bind(tracks[position])
+        holder.itemView.setOnClickListener {
+            callback(tracks[position])
+
+        }
     }
     override fun getItemCount() = tracks.size
 }

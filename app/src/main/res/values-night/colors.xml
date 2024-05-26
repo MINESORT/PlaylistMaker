@@ -11,4 +11,9 @@
     <color name="Text_BlackAndWhite">#1A1B22</color>
     <color name="grayView">#FFFFFF</color>
 
+    <color name="switch_color_1">#3772E7</color>
+    <color name="switch_color_2">#9FBBF3</color>
+
+    <color name="tp_black">#FFFFFF</color>
+    <color name="tp_white">#1A1B22</color>
 </resources>
