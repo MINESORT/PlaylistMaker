@@ -14,4 +14,20 @@
         <item name="android:layout_gravity">center</item>
         <item name="android:paddingTop">@dimen/pad_top_110</item>
     </style>
+
+
+
+
+
+    <style name="play_button">
+        <item name="android:src">@drawable/player_play_button_night</item>
+    </style>
+
+    <style name="add_to_collection_button">
+        <item name="android:src">@drawable/player_collection_button_night</item>
+    </style>
+
+    <style name="add_to_favorites_button">
+        <item name="android:src">@drawable/player_favorites_button_night</item>
+    </style>
 </resources>

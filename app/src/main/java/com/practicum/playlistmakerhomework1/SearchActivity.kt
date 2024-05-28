@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import android.widget.LinearLayout
 import android.widget.Button
 import android.view.inputmethod.EditorInfo
-
+import com.google.gson.Gson
 
 private const val HISTORY_KEY = "history"
 class SearchActivity : AppCompatActivity() {
@@ -31,10 +31,12 @@ class SearchActivity : AppCompatActivity() {
     private val retrofit = Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create()).build()
     private val iTunes = retrofit.create(ITunesAPI::class.java)
     private lateinit var scanHistory: SearchHistory
-
+    private lateinit var historyAd: AdapterTrack
+    @SuppressLint("NotifyDataSetChanged")
     override fun onStop() {
         super.onStop()
         scanHistory.putTracks()
+        historyAd.notifyDataSetChanged()
     }
     @SuppressLint("MissingInflatedId", "NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,16 +56,29 @@ class SearchActivity : AppCompatActivity() {
         scanHistory = SearchHistory(historySharedPrefs)
         scanHistory.getTracks()
 
-        val adapter = AdapterTrack(tracks) {
-            track -> scanHistory.addTrack(track)
-        }
+
+        val mediaIntent = Intent(this, PlayerActivity::class.java)
+        val adapter = AdapterTrack(
+            tracks, callback = { track -> run {
+                    scanHistory.addTrack(track)
+                    startActivity(mediaIntent.putExtra(INTENT_KEY, track))
+                }
+            }
+        )
 
         val historyRecyclerView = findViewById<RecyclerView>(R.id.history_rec)
-        history.visibility = if (scanHistory.historyListTracks.isEmpty()) View.GONE else View.VISIBLE
 
-        val historyAd = AdapterTrack(scanHistory.historyListTracks) {
-            track -> scanHistory.addTrack(track)
-        }
+        history.visibility = when { scanHistory.historyListTracks.isEmpty() -> View.GONE else -> View.VISIBLE }
+
+        historyAd = AdapterTrack(
+            scanHistory.historyListTracks, callback = { track -> run {
+                    scanHistory.addTrack(track)
+                    startActivity(mediaIntent.putExtra(INTENT_KEY, track))
+                }
+            }
+        )
+
+
 
         historyRecyclerView.adapter = historyAd
         historyRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -79,8 +94,7 @@ class SearchActivity : AppCompatActivity() {
         }
 
         backButton.setOnClickListener {
-            val displayIntent = Intent(this, MainActivity::class.java)
-            startActivity(displayIntent)
+            finish()
         }
 
         xButton.setOnClickListener {
@@ -181,5 +195,8 @@ class SearchActivity : AppCompatActivity() {
         super.onRestoreInstanceState(savedInstanceState)
         val restoredText = savedInstanceState.getString("text")
         searchEdit.setText(restoredText)
+    }
+    companion object {
+        const val INTENT_KEY = "key"
     }
     }

@@ -20,7 +20,6 @@ class ViewHolderTrack(itemView: View) : RecyclerView.ViewHolder(itemView) {
         Glide.with(itemView).load(model.artworkUrl100).centerCrop().placeholder(R.drawable.placeholder).transform(RoundedCorners(itemView.resources.getDimensionPixelSize(R.dimen.corner_2))).into(imagePlaceHolder)
         TrackName.text = model.trackName
         Musician.text = model.artistName
-
-        Time.text = SimpleDateFormat("mm:ss", Locale.getDefault()).format(model.trackTimeMillis)
+        Time.text =  model.timesUp
     }
 }

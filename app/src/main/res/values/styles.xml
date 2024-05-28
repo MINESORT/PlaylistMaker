@@ -200,4 +200,166 @@
         <item name="cornerRadius">@dimen/rad_54dp</item>
 
     </style>
+
+
+
+
+    <style name="xBackButton">
+
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="tint">@color/tp_black</item>
+        <item name="android:src">@drawable/vectormainsettings</item>
+    </style>
+
+    <style name="back_player" parent="xBackButton">
+        <item name="android:layout_marginTop">@dimen/margin_image_track</item>
+        <item name="android:layout_marginStart">@dimen/margin_image_track</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+
+    </style>
+
+    <style name="player_text">
+        <item name="android:textSize">@dimen/small_text_list</item>
+        <item name="android:textColor">@color/tp_black</item>
+    </style>
+
+
+    <style name="player_text2">
+        <item name="android:textSize">@dimen/small_text_list</item>
+        <item name="android:textColor">@color/grayDay_Night</item>
+    </style>
+
+    <style name="play_button">
+        <item name="android:src">@drawable/player_play_button_day</item>
+    </style>
+
+    <style name="add_to_collection_button">
+        <item name="android:src">@drawable/player_collection_button</item>
+    </style>
+
+    <style name="add_to_favorites_button">
+        <item name="android:src">@drawable/player_favorites_button</item>
+    </style>
+
+
+    <style name="art_player">
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_marginHorizontal">@dimen/padding_8</item>
+        <item name="android:layout_marginTop">26dp</item>
+
+
+    </style>
+
+    <style name="track_name_player">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/pad_top_16dp</item>
+        <item name="android:textColor">@color/tp_black</item>
+        <item name="android:textSize">@dimen/text_size_22</item>
+
+    </style>
+
+    <style name="track_name_small_player">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/padding_8</item>
+        <item name="android:textSize">@dimen/size_14</item>
+        <item name="android:textColor">@color/tp_black</item>
+
+    </style>
+
+    <style name="play_button_player" parent="play_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">38dp</item>
+    </style>
+
+    <style name="add_to_collection_player" parent="add_to_collection_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/padding_8</item>
+    </style>
+
+    <style name="favorites_player" parent="add_to_favorites_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">@dimen/padding_8</item>
+    </style>
+
+    <style name="bottom_time_player">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/padding_8</item>
+
+    </style>
+
+    <style name="text_for_player" parent="player_text2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">32dp</item>
+     </style>
+
+    <style name="text_collection_player" parent="player_text2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/pad_top_16dp</item>
+
+    </style>
+
+    <style name="text_year_player" parent="player_text2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/pad_top_16dp</item>
+
+    </style>
+
+    <style name="text_genre_player" parent="player_text2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/pad_top_16dp</item>
+    </style>
+
+
+    <style name="text_country_player" parent="player_text2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/padding_8</item>
+        <item name="android:layout_marginTop">@dimen/pad_top_16dp</item>
+    </style>
+
+
+    <style name="text_time_smaller_player" parent="player_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">32dp</item>
+
+    </style>
+
+    <style name="text_collection_black_player" parent="player_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/pad_top_16dp</item>
+    </style>
+
+    <style name="text_year_black_player" parent="player_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/pad_top_16dp</item>
+    </style>
+
+    <style name="text_genre_black_player" parent="player_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/pad_top_16dp</item>
+    </style>
+
+    <style name="text_country_black_player" parent="player_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/padding_8</item>
+        <item name="android:layout_marginTop">@dimen/pad_top_16dp</item>
+    </style>
 </resources>
