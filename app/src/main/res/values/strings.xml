@@ -24,5 +24,9 @@
     <string name="no_internet">Загрузка не удалась. Проверьте подключение к интернету</string>
     <string name="history_clear">Очистить историю</string>
     <string name="search">Вы искали</string>
-
+    <string name="player_track_year">Год</string>
+    <string name="player_track_genre">Жанр</string>
+    <string name="player_track_length">Длительность</string>
+    <string name="player_track_album">Альбом</string>
+    <string name="player_track_country">Страна</string>
 </resources>

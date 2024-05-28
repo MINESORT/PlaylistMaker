@@ -18,4 +18,5 @@
     <color name="switch_color_2">#E6E8EB</color>
     <color name="tp_black">#1A1B22</color>
     <color name="tp_white">#FFFFFF</color>
+    <color name="grayDay_Night">#AEAFB4</color>
 </resources>
