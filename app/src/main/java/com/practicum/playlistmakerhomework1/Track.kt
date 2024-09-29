@@ -14,8 +14,8 @@ data class Track(
     val releaseDate: String,
     val primaryGenreName: String,
     val country: String,
-    val playTimeD: String ="0:30"
-
+    val playTimeD: String ="0:30",
+    val previewUrl: String
 
 ): Serializable {
     val artwork512: String
