@@ -232,7 +232,7 @@
     </style>
 
     <style name="play_button">
-        <item name="android:src">@drawable/player_play_button_day</item>
+        <item name="android:src">@drawable/play_button</item>
     </style>
 
     <style name="add_to_collection_button">
@@ -361,5 +361,13 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginBottom">@dimen/padding_8</item>
         <item name="android:layout_marginTop">@dimen/pad_top_16dp</item>
+    </style>
+
+    <style name="progressBarStyle" >
+        <item name="android:layout_width">44dp</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">148dp</item>
+
     </style>
 </resources>

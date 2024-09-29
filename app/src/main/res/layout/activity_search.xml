@@ -137,4 +137,9 @@
     />
 </LinearLayout>
 
+    <ProgressBar android:id="@+id/progressBar"
+        style="@style/progressBarStyle"
+        android:indeterminateTint="@color/rt_blue"
+        android:visibility="gone"/>
+
     </LinearLayout>

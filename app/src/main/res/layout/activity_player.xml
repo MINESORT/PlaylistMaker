@@ -60,6 +60,7 @@
        />
 
     <ImageView
+        android:visibility="visible"
         style="@style/play_button_player"
         android:id="@+id/playButton"
         app:layout_constraintTop_toBottomOf="@id/artistName"

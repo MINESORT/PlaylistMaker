@@ -3,7 +3,6 @@ package com.practicum.playlistmakerhomework1
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -21,10 +20,25 @@ import retrofit2.converter.gson.GsonConverterFactory
 import android.widget.LinearLayout
 import android.widget.Button
 import android.view.inputmethod.EditorInfo
-import com.google.gson.Gson
+import android.os.Handler
+import android.os.Looper
+import android.widget.ProgressBar
+import androidx.appcompat.app.AppCompatActivity
 
-private const val HISTORY_KEY = "history"
+
 class SearchActivity : AppCompatActivity() {
+
+    private var isClicked = true
+    private val handler = Handler(Looper.getMainLooper())
+    private val searchRun = Runnable { apiRequest(text) }
+    private lateinit var errorNotFound: LinearLayout
+    private lateinit var errorNoInternet: LinearLayout
+    private lateinit var updateButton: Button
+    private lateinit var trackRecycler: RecyclerView
+    private lateinit var history: LinearLayout
+    private lateinit var tracks: MutableList<Track>
+    private lateinit var progressBar: ProgressBar
+    private lateinit var adapter: AdapterTrack
     private var text: String = ""
     private lateinit var searchEdit: EditText
     private val baseUrl = "https://itunes.apple.com"
@@ -40,28 +54,29 @@ class SearchActivity : AppCompatActivity() {
     }
     @SuppressLint("MissingInflatedId", "NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search)
-        searchEdit = findViewById(R.id.searchWatcher)
-
-        val updateButton = findViewById<Button>(R.id.update_button)
-        val trackRecycler = findViewById<RecyclerView>(R.id.recycler_view)
-        val errorNotFound = findViewById<LinearLayout>(R.id.error_not_found)
-        val errorNoInternet = findViewById<LinearLayout>(R.id.error_no_internet)
-        val history = findViewById<LinearLayout>(R.id.history_layout)
-        val tracks = mutableListOf<Track>()
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.activity_search)
+         searchEdit = findViewById(R.id.searchWatcher)
+         updateButton = findViewById(R.id.update_button)
+         trackRecycler = findViewById(R.id.recycler_view)
+         errorNotFound = findViewById(R.id.error_not_found)
+         errorNoInternet = findViewById(R.id.error_no_internet)
+         history = findViewById(R.id.history_layout)
+         tracks = mutableListOf()
+         progressBar = findViewById(R.id.progressBar)
         val xButton = findViewById<ImageView>(R.id.xIcon)
         val backButton = findViewById<Button>(R.id.backSettings)
         val historySharedPrefs = getSharedPreferences(HISTORY_KEY, MODE_PRIVATE)
         scanHistory = SearchHistory(historySharedPrefs)
         scanHistory.getTracks()
-
-
         val mediaIntent = Intent(this, PlayerActivity::class.java)
-        val adapter = AdapterTrack(
-            tracks, callback = { track -> run {
-                    scanHistory.addTrack(track)
-                    startActivity(mediaIntent.putExtra(INTENT_KEY, track))
+
+        adapter = AdapterTrack(
+            tracks, callback = { track ->  scanHistory.addTrack(track)
+                when {
+                    clickDebounce() -> {
+                        startActivity(mediaIntent.putExtra(INTENT_KEY, track))
+                    }
                 }
             }
         )
@@ -71,14 +86,14 @@ class SearchActivity : AppCompatActivity() {
         history.visibility = when { scanHistory.historyListTracks.isEmpty() -> View.GONE else -> View.VISIBLE }
 
         historyAd = AdapterTrack(
-            scanHistory.historyListTracks, callback = { track -> run {
-                    scanHistory.addTrack(track)
-                    startActivity(mediaIntent.putExtra(INTENT_KEY, track))
+            scanHistory.historyListTracks, callback = { track ->  scanHistory.addTrack(track)
+                when {
+                    clickDebounce() -> {
+                        startActivity(mediaIntent.putExtra(INTENT_KEY, track))
+                    }
                 }
             }
         )
-
-
 
         historyRecyclerView.adapter = historyAd
         historyRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -101,6 +116,9 @@ class SearchActivity : AppCompatActivity() {
             searchEdit.setText("")
             tracks.clear()
             adapter.notifyDataSetChanged()
+            when {
+                scanHistory.historyListTracks.isEmpty() -> history.visibility = View.GONE
+            }
             errorNotFound.visibility = View.GONE
             errorNoInternet.visibility = View.GONE
             historyAd.notifyDataSetChanged()
@@ -115,10 +133,17 @@ class SearchActivity : AppCompatActivity() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 xButton.visibility = clearButtonVisibility(p0)
-                if (searchEdit.hasFocus() && p0?.isEmpty() == false) history.visibility = View.GONE
-                else {
-                    history.visibility = View.VISIBLE
-                    historyAd.notifyDataSetChanged()
+                when {
+                    searchEdit.hasFocus() && p0?.isEmpty() == false -> history.visibility = View.GONE
+                    else -> {
+                        history.visibility = View.VISIBLE
+                        historyAd.notifyDataSetChanged()
+                    }
+                }
+                when {
+                    p0.toString().isNotEmpty() -> {
+                        searchDebounce()
+                    }
                 }
             }
 
@@ -127,51 +152,12 @@ class SearchActivity : AppCompatActivity() {
             }
         }
         searchEdit.addTextChangedListener(temporaryTextWatcher)
-        fun apiRequest(text: String) {
-            iTunes.getTrack(text).enqueue(object : Callback<ResponseTrack> {
-                    override fun onResponse(
-                        call: Call<ResponseTrack>,
-                        response: Response<ResponseTrack>) {
-                        val tracksOutResponse = response.body()?.results
-                        when {
-                            response.isSuccessful && tracksOutResponse != null -> {
-                                when {
-                                    tracksOutResponse.isEmpty() -> {
-                                        errorNotFound.visibility = View.VISIBLE
-                                        errorNoInternet.visibility = View.GONE
-                                        tracks.clear()
-                                    }
-                                    else -> {
-                                        tracks.clear()
-                                        tracks.addAll(tracksOutResponse.toMutableList())
-                                        errorNotFound.visibility = View.GONE
-                                        errorNoInternet.visibility = View.GONE
-                                    }
-                                }
-                            }
-                            else -> {
-                                tracks.clear()
-                                errorNoInternet.visibility = View.VISIBLE
-                                errorNotFound.visibility = View.GONE
-                            }
-                        }
-                        adapter.notifyDataSetChanged()
-                    }
-
-                    override fun onFailure(call: Call<ResponseTrack>, t: Throwable) {
-                        errorNoInternet.visibility = View.VISIBLE
-                        errorNotFound.visibility = View.GONE
-                        tracks.clear()
-                        adapter.notifyDataSetChanged()
-                    }
-                })
-
-        }
-
         searchEdit.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                apiRequest(text)
-                true
+            when (actionId) {
+                EditorInfo.IME_ACTION_DONE -> {
+                    apiRequest(text)
+
+                }
             }
             false
         }
@@ -180,6 +166,54 @@ class SearchActivity : AppCompatActivity() {
             apiRequest(text)
             errorNoInternet.visibility = View.GONE
         }
+    }
+    private fun apiRequest(text: String) {
+        progressBar.visibility = View.VISIBLE
+        iTunes.getTrack(text).enqueue(object : Callback<ResponseTrack> {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onResponse(
+                call: Call<ResponseTrack>,
+                response: Response<ResponseTrack>
+            ) {
+                val respTracks = response.body()?.results
+
+                when {
+                    response.isSuccessful && respTracks != null -> {
+                        when {
+                            respTracks.isEmpty() -> {
+                                progressBar.visibility = View.GONE
+                                errorNotFound.visibility = View.VISIBLE
+                                errorNoInternet.visibility = View.GONE
+                                tracks.clear()
+                            }
+                            else -> {
+                                progressBar.visibility = View.GONE
+                                tracks.clear()
+                                tracks.addAll(respTracks.toMutableList())
+                                errorNotFound.visibility = View.GONE
+                                errorNoInternet.visibility = View.GONE
+                            }
+                        }
+                    }
+                    else -> {
+                        progressBar.visibility = View.GONE
+                        tracks.clear()
+                        errorNoInternet.visibility = View.VISIBLE
+                        errorNotFound.visibility = View.GONE
+                    }
+                }
+                adapter.notifyDataSetChanged()
+            }
+
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onFailure(call: Call<ResponseTrack>, t: Throwable) {
+                progressBar.visibility = View.GONE
+                errorNotFound.visibility = View.GONE
+                errorNoInternet.visibility = View.VISIBLE
+                tracks.clear()
+                adapter.notifyDataSetChanged()
+            }
+        })
     }
 
     private fun clearButtonVisibility(s: CharSequence?): Int {
@@ -196,7 +230,27 @@ class SearchActivity : AppCompatActivity() {
         val restoredText = savedInstanceState.getString("text")
         searchEdit.setText(restoredText)
     }
+    private fun clickDebounce(): Boolean {
+        val current = isClicked
+        when {
+            isClicked -> {
+                isClicked = false
+                handler.postDelayed({ isClicked = true }, PUSH_DELAY)
+            }
+        }
+        return current
+    }
+
+    private fun searchDebounce() {
+        handler.removeCallbacks(searchRun)
+        handler.postDelayed(searchRun, SCAN_DELAY)
+    }
+
     companion object {
         const val INTENT_KEY = "key"
+        private const val HISTORY_KEY = "history"
+        private const val SCAN_DELAY = 2000L
+        private const val PUSH_DELAY = 1000L
+
     }
     }
