@@ -1,12 +1,9 @@
-package com.practicum.playlistmakerhomework1
+package com.practicum.playlistmakerhomework1.settings
 
 import android.annotation.SuppressLint
-import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.content.Intent.ACTION_SENDTO
 import android.content.Intent.EXTRA_SUBJECT
 import android.content.Intent.EXTRA_TEXT
-import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +11,8 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.switchmaterial.SwitchMaterial
+import com.practicum.playlistmakerhomework1.App
+import com.practicum.playlistmakerhomework1.R
 
 const val THEME_KEY = "key_for_theme"
 const val THEME = "day_night_theme"

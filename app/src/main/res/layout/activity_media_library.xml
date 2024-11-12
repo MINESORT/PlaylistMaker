@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MediaLibrary"
+    tools:context=".search.ui.MediaLibrary"
     android:background = "@color/Text_Black">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

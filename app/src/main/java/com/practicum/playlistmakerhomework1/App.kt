@@ -3,6 +3,8 @@ package com.practicum.playlistmakerhomework1
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
+import com.practicum.playlistmakerhomework1.settings.THEME
+import com.practicum.playlistmakerhomework1.settings.THEME_KEY
 
 class App: Application() {
 
@@ -18,10 +20,13 @@ class App: Application() {
     fun switchTheme(darkThemeEnabled: Boolean) {
         darkTheme = darkThemeEnabled
         AppCompatDelegate.setDefaultNightMode(
-            if (darkThemeEnabled) {
-                AppCompatDelegate.MODE_NIGHT_YES
-            } else {
-                AppCompatDelegate.MODE_NIGHT_NO
+            when {
+                darkThemeEnabled -> {
+                    AppCompatDelegate.MODE_NIGHT_YES
+                }
+                else -> {
+                    AppCompatDelegate.MODE_NIGHT_NO
+                }
             }
         )
     }
