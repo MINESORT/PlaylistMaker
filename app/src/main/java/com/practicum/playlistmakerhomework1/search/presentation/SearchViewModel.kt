@@ -1,5 +1,6 @@
 package com.practicum.playlistmakerhomework1.search.presentation
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.os.Handler
 import android.os.Looper
@@ -31,34 +32,48 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
         handler.removeCallbacksAndMessages(SEARCH_REQUEST_TOKEN)
     }
 
+    @SuppressLint("SuspiciousIndentation")
     fun searchDebounce(changedText: String) {
-        when {
-            latestSearchText == changedText || changedText.isEmpty() -> {
-                return
-            }
-            else -> {
+
+
+
+
+        if (latestSearchText == changedText) return
+
                 this.latestSearchText = changedText
                 handler.removeCallbacksAndMessages(SEARCH_REQUEST_TOKEN)
 
-                val searchRunnable = Runnable { searchRequest(changedText) }
 
+
+        if (changedText.isEmpty()) {
+            renderState(TracksState.Empty) // или Placeholder, если хотите именно заглушку
+            return
+        }
+                val searchRunnable = Runnable { searchRequest(changedText) }
                 val postTime = SystemClock.uptimeMillis() + SEARCH_DEBOUNCE_DELAY
                 handler.postAtTime(searchRunnable, SEARCH_REQUEST_TOKEN, postTime)
-            }
-        }
+
+
 
     }
 
-    fun repeatRequest(){
-        when {
-            latestSearchText != null -> {
-                searchRequest(latestSearchText!!)
-            }
+
+
+    fun repeatRequest() {
+        if (latestSearchText.isNullOrEmpty()) {
+            renderState(TracksState.Empty)  // Если latestSearchText пустой, показываем заглушку
+        } else {
+            searchRequest(latestSearchText!!)
         }
     }
+    fun forcedRequest(queryInput: String) {
+        if (queryInput.isEmpty()) {
+            renderState(TracksState.Empty)
 
-    fun forcedRequest(queryInput: String){
-        searchRequest(queryInput)
+       // Если текст пустой, показываем заглушку
+        }
+            searchRequest(queryInput)
+
     }
 
     fun setState(state: TracksState){
@@ -67,35 +82,34 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
 
     private fun searchRequest(newSearchText: String) {
         Log.d("SearchViewModel", "searchRequest $newSearchText")
-        when {
-            newSearchText.isNotEmpty() -> {
-                renderState(TracksState.Loading)
-            }
+
+        if (newSearchText.isEmpty()) {
+            Log.d("SearchViewModel", "Empty search request")
+            renderState(TracksState.Empty)
+            return // Выход, если текст пустой
         }
+
+        renderState(TracksState.Loading)
 
         tracksIt.searchTracks(newSearchText, object : TracksInteractor.TrackConsumer {
             override fun consume(foundTracks: List<Track>?, errorMessage: String?) {
-                val tracks = mutableListOf<Track>()
-                when {
-                    foundTracks != null -> {
-                        tracks.addAll(foundTracks)
-                    }
+                Log.d("SearchViewModel", "consume: foundTracks=$foundTracks, errorMessage=$errorMessage")
+                if (errorMessage != null) {
+                    renderState(TracksState.Error) // Ошибка запроса
+                    return
                 }
-                when {
-                    errorMessage != null -> {
-                        renderState(TracksState.Error)
-                    }
 
-                    tracks.isEmpty() -> {
-                        Log.d("SearchViewModel", "trackIsEmpty")
-                        renderState(TracksState.Empty)
-                    }
 
-                    else -> {
-                        renderState(TracksState.Content(tracks))
-                    }
+                if (foundTracks.isNullOrEmpty()) {
+                    renderState(TracksState.Empty) // Заглушка "ничего не найдено"
+                    Log.d("SearchViewModel", "No tracks found, showing empty state.")
+                } else {
+                    renderState(TracksState.Content(foundTracks)) // Состояние с найденными треками
+                    Log.d("SearchViewModel", "Tracks found: ${foundTracks.size}")
                 }
-            }
+
+                }
+
         })
     }
 

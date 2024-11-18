@@ -16,8 +16,9 @@ import androidx.lifecycle.ViewModelProvider
 import android.util.Log
 import android.widget.TextView
 import com.practicum.playlistmakerhomework1.player.data.TrackTime
-import com.practicum.playlistmakerhomework1.player.domain.MediaPlayerInter
-import com.practicum.playlistmakerhomework1.player.Ui.models.PlayerState
+import com.practicum.playlistmakerhomework1.player.domain.MediaPlayerWrapper
+import com.practicum.playlistmakerhomework1.player.domain.PlayerState
+import com.practicum.playlistmakerhomework1.player.domain.MediaPlayerInterLL
 import com.practicum.playlistmakerhomework1.search.domain.models.Track
 import com.practicum.playlistmakerhomework1.search.ui.SearchActivity.Companion.INTENT_KEY
 import com.practicum.playlistmakerhomework1.util.Creator
@@ -30,7 +31,7 @@ class PlayerActivity : AppCompatActivity() {
     private var handler: Handler? = null
 
 
-    private lateinit var mediaPlayer: MediaPlayerInter
+    private lateinit var mediaPlayer: MediaPlayerWrapper
     private lateinit var playButton: ImageView
     private lateinit var playTime: TextView
     private lateinit var viewModel: PlayerViewModel
