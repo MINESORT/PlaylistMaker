@@ -1,4 +1,4 @@
-package com.practicum.playlistmakerhomework1.player.Ui.models
+package com.practicum.playlistmakerhomework1.player.domain
 
 
 sealed interface PlayerState{

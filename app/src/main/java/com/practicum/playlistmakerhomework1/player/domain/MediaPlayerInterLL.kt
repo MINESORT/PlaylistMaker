@@ -1,13 +1,11 @@
-package com.practicum.playlistmakerhomework1.player.Ui
+package com.practicum.playlistmakerhomework1.player.domain
 
-import android.media.MediaPlayer
-import com.practicum.playlistmakerhomework1.player.domain.MediaPlayerInter
 
-class MediaPlayerInterLL: MediaPlayerInter {
+
+class MediaPlayerInterLL(private val player: MediaPlayer): MediaPlayerWrapper {
 
     override var url: String? = null
 
-    private val player = MediaPlayer()
     override var playerState = STATE_DEFAULT
 
     override fun prepare(callback: () -> Unit) {

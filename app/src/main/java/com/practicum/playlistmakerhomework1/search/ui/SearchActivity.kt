@@ -163,20 +163,24 @@ class SearchActivity : AppCompatActivity() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 xButton.visibility = clearButtonVisibility(p0)
-                viewModel.searchDebounce(p0.toString())
+
+
+                        viewModel.searchDebounce(p0.toString())
+
+
+
             }
 
             override fun afterTextChanged(p0: Editable?) {
-                qInput = p0.toString()
-            }
+
+                qInput = p0.toString()}
+
         }
+
         textWatcher.let { searchEdit.addTextChangedListener(it) }
         searchEdit.setOnEditorActionListener { _, actionId, _ ->
-            when (actionId) {
-                EditorInfo.IME_ACTION_DONE -> {
-                    viewModel.forcedRequest(qInput)
-
-                }
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                viewModel.forcedRequest(qInput)
             }
             false
         }

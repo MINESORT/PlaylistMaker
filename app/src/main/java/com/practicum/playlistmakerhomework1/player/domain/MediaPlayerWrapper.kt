@@ -1,6 +1,6 @@
 package com.practicum.playlistmakerhomework1.player.domain
 
-interface MediaPlayerInter {
+interface MediaPlayerWrapper {
 
     var url: String?
     var playerState: Int
