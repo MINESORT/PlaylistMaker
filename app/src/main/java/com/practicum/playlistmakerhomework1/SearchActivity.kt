@@ -26,7 +26,7 @@ class SearchActivity : AppCompatActivity() {
         searchEdit = findViewById(R.id.searchWatcher)
 
         val xButton = findViewById<ImageView>(R.id.xIcon)
-        val trackList: ArrayList<Track> = ArrayList()
+
         val backButton = findViewById<Button>(R.id.backSettings)
 
         backButton.setOnClickListener {
@@ -35,11 +35,6 @@ class SearchActivity : AppCompatActivity() {
         }
 
 
-        trackList.add(Track("Smells Like Teen Spirit", "Nirvana", "5:01", getString(R.string.nirvana)))
-        trackList.add(Track("Billie Jean", "Michael Jackson", "4:35", getString(R.string.michael_jackson)))
-        trackList.add(Track("Stayin' Alive", "Bee Gees", "4:10", getString(R.string.bee_gees)))
-        trackList.add(Track("Whole Lotta Love", "Led Zeppelin", "5:33", getString(R.string.led_zeppelin)))
-        trackList.add(Track("Sweet Child O'Mine", "Guns N' Roses", "5:03", getString(R.string.guns_n_roses)))
 
         xButton.setOnClickListener {
             searchEdit.setText("")
@@ -50,7 +45,6 @@ class SearchActivity : AppCompatActivity() {
 
         val temporaryTextWatcher = object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
