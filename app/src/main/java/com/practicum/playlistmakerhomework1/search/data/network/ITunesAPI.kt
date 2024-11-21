@@ -1,6 +1,7 @@
-package com.practicum.playlistmakerhomework1
+package com.practicum.playlistmakerhomework1.search.data.network
 
 
+import com.practicum.playlistmakerhomework1.search.data.dto.ResponseTrack
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

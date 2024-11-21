@@ -1,14 +1,10 @@
-package com.practicum.playlistmakerhomework1
+package com.practicum.playlistmakerhomework1.search.data
 
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-private const val LAST_INDEX = 9
-private const val FIRST_INDEX = 0
-private const val HISTORY_KEY = "history"
-private const val MAX_SIZE = 10
-
+import com.practicum.playlistmakerhomework1.search.domain.models.Track
 
 class SearchHistory(private val sharedPreferences: SharedPreferences){
 
@@ -16,13 +12,13 @@ class SearchHistory(private val sharedPreferences: SharedPreferences){
 
 
     fun getTracks(){
-        val getSample  = sharedPreferences.getString(HISTORY_KEY, null)
-        historyListTracks = listFromJson(getSample)
+        val Sample  = sharedPreferences.getString(HISTORY_KEY, null)
+        historyListTracks = listFromJson(Sample)
     }
 
     fun putTracks(){
-        val s = jsonFromList(historyListTracks)
-        sharedPreferences.edit().putString(HISTORY_KEY, s).apply()
+        val historyValue = jsonFromList(historyListTracks)
+        sharedPreferences.edit().putString(HISTORY_KEY, historyValue).apply()
     }
 
     private fun jsonFromList(list: MutableList<Track>): String{
@@ -30,10 +26,10 @@ class SearchHistory(private val sharedPreferences: SharedPreferences){
         return gson.toJson(list)
     }
 
-    private fun listFromJson(json: String?): MutableList<Track>{
+    private fun listFromJson(json: String?): MutableList<Track> {
         val gson = Gson()
-        val listType = object : TypeToken<MutableList<Track>>() {}.type
-        return gson.fromJson(json, listType) ?: mutableListOf()
+        val listT = object : TypeToken<MutableList<Track>>() {}.type
+        return gson.fromJson(json, listT) ?: mutableListOf()
     }
 
     fun addTrack(track: Track){
@@ -50,4 +46,10 @@ class SearchHistory(private val sharedPreferences: SharedPreferences){
         historyListTracks.add(FIRST_INDEX, track)
     }
 
+    companion object{
+        private const val HISTORY_KEY = "history"
+        private const val MAX_SIZE = 10
+        private const val LAST_INDEX = 9
+        private const val FIRST_INDEX = 0
+    }
 }
